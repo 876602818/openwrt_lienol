@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: 19.07
+  REPO_BRANCH: 21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
@@ -69,10 +69,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Update feeds
-      run: 
-        cd openwrt && ./scripts/feeds update -a
-        cd openwrt && rm -rf ./feeds/packages/libs/libcap
-        cd openwrt && svn co https://github.com/openwrt/packages/branches/openwrt-21.02/libs/libcap/ ./feeds/packages/libs/libcap
+      run: cd openwrt && ./scripts/feeds update -a
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
